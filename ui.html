@@ -1,0 +1,1654 @@
+<div id="wrapper" class="wrapper">
+  <div class="head">
+    <div class="actions">
+      <div class="left">
+        <button id="refresh" class="icon-only">
+          <svg viewBox="0 0 128 128" class="icon icon-stroke">
+            <path
+              d="M113 64C113 34.1766 88.8234 10 59 10C29.1766 10 5 34.1766 5 64C5 93.8234 29.1766 118 59 118"
+              stroke-width="0.8"
+              vector-effect="non-scaling-stroke"
+              stroke-linecap="round"
+            />
+            <path
+              d="M101.486 59.3137L112.8 70.6274L124.114 59.3137"
+              stroke-width="0.8"
+              vector-effect="non-scaling-stroke"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+        <div class="input-wrapper">
+          <input
+            id="search-term"
+            class="search-term"
+            type="text"
+            value=""
+            placeholder="Search..."
+          />
+          <svg
+            id="clear-search"
+            viewBox="0 0 128 128"
+            class="icon icon-stroke icon-cancel"
+            fill="none"
+          >
+            <g clip-path="url(#clip0_128_103)">
+              <path
+                d="M125 64C125 97.6894 97.6894 125 64 125C30.3106 125 3 97.6894 3 64C3 30.3106 30.3106 3 64 3C97.6894 3 125 30.3106 125 64Z"
+                stroke-width="0.8"
+                vector-effect="non-scaling-stroke"
+              />
+              <path
+                d="M93.6984 93.6985L34.3015 34.3015"
+                stroke-width="0.8"
+                vector-effect="non-scaling-stroke"
+              />
+              <path
+                d="M34.3015 93.6985L93.6985 34.3015"
+                stroke-width="0.8"
+                vector-effect="non-scaling-stroke"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_128_103">
+                <rect width="128" height="128" />
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
+      </div>
+      <div class="right">
+        <button id="select-all">
+          <svg viewBox="0 0 128 128" class="icon icon-stroke icon-left">
+            <path
+              d="M33.6667 118H8V10H33.6667M94.3 10H119.967V118H94.3"
+              stroke-width="0.8"
+              vector-effect="non-scaling-stroke"
+              stroke-miterlimit="10"
+            />
+            <path
+              d="M40.4853 64L64 40.4853L87.5147 64L64 87.5147L40.4853 64Z"
+              stroke-width="0.8"
+              vector-effect="non-scaling-stroke"
+            />
+          </svg>
+          <span>Select all</span>
+        </button>
+
+        <button id="filter" class="icon-only">
+          <svg viewBox="0 0 128 128" class="icon icon-fill">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M69.038 70.384L69.038 116.747C69.038 119.508 66.7994 121.747 64.038 121.747C61.2766 121.747 59.038 119.508 59.038 116.747L59.038 70.384L13 9H115.076L69.038 70.384Z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="filtering-actions" class="filtering-actions hidden">
+      <div class="filtering-section">
+        <div class="section-filters">
+          <div class="input-wrapper block">
+            <label class="checkbox" for="scope-to-selection">
+              <input
+                id="scope-to-selection"
+                class="scope-to-selection"
+                type="checkbox"
+              />
+              <span>In selection only</span>
+            </label>
+            <p>
+              Only search and filter current selection, not the entire page.
+            </p>
+          </div>
+          <div class="input-wrapper block">
+            <label class="checkbox" for="hide-nested">
+              <input id="hide-nested" class="hide-nested" type="checkbox" />
+              <span>Ignore nested instances</span>
+            </label>
+            <p>Narrow to top level instances (nested ones inherit changes).</p>
+          </div>
+        </div>
+      </div>
+      <div class="filtering-section">
+        <h5>Filter by main component attributes</h5>
+        <div class="section-filters">
+          <div class="group">
+            <div class="input-wrapper block">
+              <label class="checkbox" for="show-missing">
+                <input
+                  id="show-missing"
+                  class="show-missing"
+                  type="checkbox"
+                  checked
+                />
+                <span>Missing</span>
+              </label>
+              <p>Main comp deleted or private.</p>
+            </div>
+            <div class="input-wrapper block">
+              <label class="checkbox" for="show-existing">
+                <input
+                  id="show-existing"
+                  class="show-existing"
+                  type="checkbox"
+                  checked
+                />
+                <span>Existing</span>
+              </label>
+              <p>Main comp exists in library.</p>
+            </div>
+          </div>
+          <div class="group">
+            <div class="input-wrapper block">
+              <label class="checkbox" for="show-local">
+                <input
+                  id="show-local"
+                  class="show-local"
+                  type="checkbox"
+                  checked
+                />
+                <span>Local</span>
+              </label>
+              <p>Main comp is in local library.</p>
+            </div>
+            <div class="input-wrapper block">
+              <label class="checkbox" for="show-remote">
+                <input
+                  id="show-remote"
+                  class="show-remote"
+                  type="checkbox"
+                  checked
+                />
+                <span>Remote</span>
+              </label>
+              <p>Main comp is in remote library.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="counters">
+      <span id="instances-count" class="instances-count"></span>
+      <span id="selection-count" class="selection-count"></span>
+    </div>
+  </div>
+
+  <span
+    id="main-comp-checks-count"
+    class="main-comp-checks-count"
+    data-count="0"
+  >
+    <svg viewBox="0 0 24 24" class="icon-loading icon-fill">
+      <circle cx="18" cy="12" r="0">
+        <animate
+          attributeName="r"
+          begin=".67"
+          calcMode="spline"
+          dur="1.5s"
+          keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+          repeatCount="indefinite"
+          values="0;2;0;0"
+        />
+      </circle>
+      <circle cx="12" cy="12" r="0">
+        <animate
+          attributeName="r"
+          begin=".33"
+          calcMode="spline"
+          dur="1.5s"
+          keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+          repeatCount="indefinite"
+          values="0;2;0;0"
+        />
+      </circle>
+      <circle cx="6" cy="12" r="0">
+        <animate
+          attributeName="r"
+          begin="0"
+          calcMode="spline"
+          dur="1.5s"
+          keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+          repeatCount="indefinite"
+          values="0;2;0;0"
+        />
+      </circle>
+    </svg>
+    <span></span>
+  </span>
+
+  <ul id="instances-list" class="instances-list"></ul>
+
+  <!-- Empty list item template -->
+  <li id="empty-list-item" class="empty-list-item hidden">
+    <svg viewBox="0 0 128 128" class="icon icon-stroke icon-no-instances">
+      <path
+        vector-effect="non-scaling-stroke"
+        stroke-width="0.8"
+        d="M9 119L119 9.00001"
+      />
+      <path
+        vector-effect="non-scaling-stroke"
+        stroke-width="0.8"
+        d="M14.2426 64L64 14.2426L113.757 64L64 113.757L14.2426 64Z"
+      />
+    </svg>
+    <span>No instances.</span>
+    <span class="detail">Check your filters or your page content.</span>
+  </li>
+  <!-- END: Empty list item template -->
+
+  <!-- List item template -->
+  <li id="list-item-template" class="hidden">
+    <span class="instance-name" title="Select">
+      <svg
+        viewBox="0 0 128 128"
+        id="icon-instance"
+        class="icon icon-stroke icon-instance"
+        fill="none"
+      >
+        <g clip-path="url(#clip0_103_105)">
+          <path
+            d="M8.48528 64L64 8.48528L119.515 64L64 119.515L8.48528 64Z"
+            vector-effect="non-scaling-stroke"
+            stroke-width="1"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip0_103_105">
+            <rect width="128" height="128" />
+          </clipPath>
+        </defs>
+      </svg>
+      <span class="name">Name</span>
+      <span
+        class="nested"
+        title="This instance is nested within another instance."
+      >
+        <svg
+          class="icon icon-stroke icon-nested"
+          viewBox="0 0 128 128"
+          fill="none"
+        >
+          <g clip-path="url(#clip0_122_22)">
+            <path
+              d="M72.4853 96L96 72.4853L119.515 96L96 119.515L72.4853 96Z"
+              vector-effect="non-scaling-stroke"
+              stroke-width="0.8"
+            />
+            <path
+              d="M8.48528 32L32 8.48528L55.5147 32L32 55.5147L8.48528 32Z"
+              vector-effect="non-scaling-stroke"
+              stroke-width="0.8"
+            />
+            <path
+              d="M32 54V96H74"
+              stroke-linecap="round"
+              vector-effect="non-scaling-stroke"
+              stroke-width="0.8"
+            />
+          </g>
+          <defs>
+            <clipPath id="clip0_122_22">
+              <rect width="128" height="128" />
+            </clipPath>
+          </defs>
+        </svg>
+        <span class="nested-text">Nested</span>
+      </span>
+    </span>
+    <span class="main-comp-info">
+      <svg viewBox="0 0 24 24" class="icon icon-fill icon-loading">
+        <circle cx="18" cy="12" r="0">
+          <animate
+            attributeName="r"
+            begin=".67"
+            calcMode="spline"
+            dur="1.5s"
+            keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+            repeatCount="indefinite"
+            values="0;2;0;0"
+          />
+        </circle>
+        <circle cx="12" cy="12" r="0">
+          <animate
+            attributeName="r"
+            begin=".33"
+            calcMode="spline"
+            dur="1.5s"
+            keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+            repeatCount="indefinite"
+            values="0;2;0;0"
+          />
+        </circle>
+        <circle cx="6" cy="12" r="0">
+          <animate
+            attributeName="r"
+            begin="0"
+            calcMode="spline"
+            dur="1.5s"
+            keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+            repeatCount="indefinite"
+            values="0;2;0;0"
+          />
+        </circle>
+      </svg>
+      <span class="text">Info</span>
+      <svg viewBox="0 0 128 128" class="icon icon-fill icon-component">
+        <g clip-path="url(#clip0_103_104)">
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M53.1632 64L26.5816 90.5816L0 64L26.5816 37.4184L53.1632 64ZM90.5816 26.5816L64 53.1632L37.4184 26.5816L64 0L90.5816 26.5816ZM128 64L101.418 90.5816L74.8368 64L101.418 37.4184L128 64ZM90.5816 101.418L64 128L37.4184 101.418L64 74.8368L90.5816 101.418Z"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip0_103_104">
+            <rect width="128" height="128" />
+          </clipPath>
+        </defs>
+      </svg>
+      <svg
+        viewBox="0 0 128 128"
+        class="icon icon-stroke icon-component-remote"
+        fill="none"
+      >
+        <g clip-path="url(#clip0_105_108)">
+          <path
+            vector-effect="non-scaling-stroke"
+            stroke-width="1"
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M10.1571 62.0641L65.9448 6.26758L59.6772 0L3.88953 55.7965C-1.29651 60.9914 -1.29651 69.4132 3.88953 74.5993L53.4185 124.11C58.6045 129.305 67.0263 129.305 72.2124 124.11L128 68.3317L121.732 62.0641L65.9536 117.843C64.2161 119.572 61.4147 119.572 59.6861 117.843L10.1571 68.3317C8.42843 66.603 8.41957 63.7928 10.1571 62.0641ZM111.591 12.0033H80.5632V20.8683H100.891L64.1274 57.6227L70.395 63.8903L107.141 27.1359V47.4634H116.006V12.0033H111.573H111.591Z"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip0_105_108">
+            <rect width="128" height="128" />
+          </clipPath>
+        </defs>
+      </svg>
+    </span>
+  </li>
+  <!-- END: List item template -->
+</div>
+
+<script>
+  const debounce = (func, timeout = 300) => {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => { func.apply(this, args); }, timeout);
+    };
+  }
+
+  const sanitizeString = (string) => {
+    var entityMap = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+      "/": "&#x2F;",
+      "`": "&#x60;",
+      "=": "&#x3D;",
+    };
+
+    return String(string).replace(/[&<>"'`=\/]/g, function (s) {
+      return entityMap[s];
+    });
+  };
+
+  const getSearchQuery = (term) => {
+    const query = {};
+    const exactMatch = /^".*"$/.test(term) || /^".*/.test(term);
+    // term = sanitizeString(term);
+    if (exactMatch) {
+      let termInner = "";
+      if (/^".*"$/.test(term)) termInner = term.slice(1, -1);
+      else if (/^".*/.test(term)) termInner = term.slice(1);
+      query.mode = "term-exact";
+      query.term = termInner;
+    } else {
+      query.mode = "term";
+      query.term = term;
+    }
+    return query;
+  };
+
+  const getQuery = (filters) => {
+    const term = document.getElementById("search-term").value;
+
+    let query = {};
+    if (filters.ids) {
+      query = { mode: "listed", ids: filters.ids };
+    } else if (filters.id) {
+      query = { mode: "one", id: filters.id };
+    } else if (term != "") {
+      query = getSearchQuery(term);
+    } else {
+      query = { mode: "all" };
+    }
+
+    const scopeToSelectionInput = document.getElementById("scope-to-selection");
+    query.scopeToSelection = scopeToSelectionInput.checked;
+
+    const hideNested = document.getElementById("hide-nested");
+    query.hideNested = hideNested.checked;
+
+    const showLocal = document.getElementById("show-local");
+    query.showLocal = showLocal.checked;
+
+    const showRemote = document.getElementById("show-remote");
+    query.showRemote = showRemote.checked;
+
+    return query;
+  };
+
+  const populateMainCompInfo = (item) => {
+    const showMissing = document.getElementById("show-missing").checked;
+    const showExisting = document.getElementById("show-existing").checked;
+
+    const li = document.getElementById(item.id);
+
+    if (!li) return;
+
+    if (
+      (showMissing && item.mainComp.missing) ||
+      (showExisting && !item.mainComp.missing)
+    ) {
+      li.classList.remove("hidden");
+
+      const mainCompInfo = li.querySelector(".main-comp-info");
+      mainCompInfo.title = "Main component: " + item.mainComp.name;
+
+      // Loading
+      const loading = mainCompInfo.querySelector(".icon-loading");
+      if (item.mainComp.missing == undefined) {
+        mainCompInfo.classList.add("loading");
+        loading.classList.remove("hidden");
+      } else {
+        mainCompInfo.classList.remove("loading");
+        loading.classList.add("hidden");
+      }
+
+      // Text
+      const text = mainCompInfo.querySelector(".text");
+      if (item.mainComp.missing) {
+        if (!item.mainComp.private) mainCompInfo.classList.add("no-main-comp");
+        text.textContent = item.mainComp.private
+          ? "Missing (private)"
+          : "Missing";
+      } else {
+        mainCompInfo.classList.remove("no-main-comp");
+        text.textContent = "";
+      }
+
+      // Main comp icon
+      if (item.mainComp.remote) {
+        mainCompInfo.querySelector(".icon-component").classList.add("hidden");
+      } else {
+        mainCompInfo
+          .querySelector(".icon-component-remote")
+          .classList.add("hidden");
+      }
+
+      if (!item.mainComp.remote && !item.mainComp.missing) {
+        // Main comp onclick
+        mainCompInfo.classList.add("main-comp-link");
+        mainCompInfo.onclick = () => {
+          parent.postMessage(
+            {
+              pluginMessage: {
+                type: "select",
+                query: getQuery({ id: item.mainComp.id }),
+              },
+            },
+            "*"
+          );
+        };
+      } else {
+        mainCompInfo.classList.remove("main-comp-link");
+        mainCompInfo.onclick = () => {};
+      }
+    } else {
+      li.classList.add("hidden");
+    }
+  };
+
+  const updateCheckCount = (dir) => {
+    const el = document.getElementById("main-comp-checks-count");
+    const elText = el.querySelector("span");
+    const elIcon = el.querySelector(".icon-loading");
+
+    if (!dir) {
+      el.dataset.count = 0;
+    } else {
+      if (dir == "increase") {
+        el.dataset.count++;
+      }
+      if (dir == "decrease") {
+        el.dataset.count--;
+      }
+    }
+
+    if (el.dataset.count > 0) {
+      el.classList.remove("hidden");
+      elText.textContent = `${el.dataset.count} to check`;
+      elIcon.classList.remove("hidden");
+    } else {
+      el.classList.add("hidden");
+      elIcon.classList.add("hidden");
+      elText.textContent = "All checked!";
+    }
+  };
+
+  const setLoading = () => {
+    const list = document.getElementById("instances-list");
+    list.innerHTML = "";
+
+    const itemsAmt = 28;
+    for (let i = 0; i < itemsAmt; i++) {
+      const li = document.getElementById("list-item-template").cloneNode(true);
+      li.classList.remove("hidden");
+      li.classList.add("loading-item");
+      li.style.setProperty("--anim-delay", (i * 0.0015).toFixed(1) + "s");
+      // li.style.setProperty("--anim-delay", (Math.random() * .5) + "s");
+      li.style.opacity = 1 - i / itemsAmt;
+      const name = li.querySelector(".name");
+      name.innerHTML = "&nbsp;";
+      name.style.width = Math.random() * 40 + "%";
+      li.querySelector(".nested").textContent = "";
+      li.querySelector(".main-comp-info").querySelector(".text").textContent =
+        "";
+      li.querySelector(".icon-loading").classList.add("hidden");
+      li.querySelector(".icon-component-remote").classList.add("hidden");
+      list.appendChild(li);
+    }
+  };
+
+  const setSelectionCount = (count) => {
+    const selectionCount = document.getElementById("selection-count");
+    if (count > 0) {
+      selectionCount.textContent = count + ` node${count == 1 ? "" : "s"} selected`;
+    } else selectionCount.textContent = "";
+  }
+
+  const toggleFiltersVisibility = () => {
+    const filterBtn = document.getElementById("filter");
+    const wrapper = document.getElementById("wrapper");
+    const filteringActions = document.getElementById("filtering-actions");
+    if (filteringActions.classList.contains("hidden")) {
+      filteringActions.classList.remove("hidden");
+      wrapper.classList.add("filters-visible");
+      filterBtn.classList.add("on");
+    } else {
+      filteringActions.classList.add("hidden");
+      wrapper.classList.remove("filters-visible");
+      filterBtn.classList.remove("on");
+    }
+  }
+
+  const searchHandler = (e) => {
+    const term = document.getElementById("search-term").value;
+    const cancelIcon = document.getElementById("clear-search");
+    if (term != "") {
+      cancelIcon.classList.add("visible");
+    } else {
+      cancelIcon.classList.remove("visible");
+    }
+    if (term != searchTerm) {
+      searchTerm = term;
+      setLoading();
+      parent.postMessage(
+        { pluginMessage: { type: "list", query: getQuery(term) } },
+        "*"
+      );
+    }
+  };
+
+  const showEmptyListItem = () => {
+    const list = document.getElementById("instances-list");
+    const emptyListItem = document
+      .getElementById("empty-list-item")
+      .cloneNode(true);
+    emptyListItem.classList.remove("hidden");
+    list.append(emptyListItem);
+  }
+
+  const removeEmptyListItem = () => {
+    const list = document.getElementById("instances-list");
+    const current = list.getElementById("empty-list-item")
+    current.remove();
+  }
+
+  onmessage = (event) => {
+    const msg = event.data.pluginMessage;
+
+    if (msg.type == "start") {
+      setTimeout(() => {
+        setLoading();
+        setSelectionCount(msg.selectedCount);
+        // Show filters on first run
+        // toggleFiltersVisibility();
+        parent.postMessage(
+          { pluginMessage: { type: "list", query: getQuery({}) } },
+          "*"
+        );
+      }, 100);
+    }
+
+    if (msg.type == "returned-list") {
+      // Set instances count
+      const instancesCount = document.getElementById("instances-count");
+      const countDetail =
+        msg.data.total != msg.data.items.length
+          ? " of " + msg.data.total + " "
+          : "";
+      instancesCount.innerHTML =
+        msg.data.items.length + countDetail + ` instance${msg.data.total == 1 ? "" : "s"}`;
+
+      // Init list
+      const list = document.getElementById("instances-list");
+      list.innerHTML = "";
+
+      if (msg.data.items.length <= 0) showEmptyListItem();
+
+      msg.data.items.forEach((item, idx) => {
+        const li = document
+          .getElementById("list-item-template")
+          .cloneNode(true);
+        li.classList.remove("hidden");
+        li.id = item.id;
+        list.appendChild(li);
+
+        // Instance name
+        const instanceName = li.querySelector(".instance-name");
+        if (!item.visible) instanceName.classList.add("not-visible");
+
+        const name = instanceName.querySelector(".name");
+        name.textContent = item.name || "–";
+        instanceName.title = "Select: " + item.name || "–";
+
+        // Nested
+        if (!item.nested) {
+          instanceName.querySelector(".nested").remove();
+        } else {
+          instanceName.querySelector(".nested-text").textContent = item.nested;
+        }
+
+        // Name onclick
+        instanceName.onclick = () => {
+          parent.postMessage(
+            {
+              pluginMessage: {
+                type: "select",
+                query: getQuery({ id: item.id }),
+              },
+            },
+            "*"
+          );
+        };
+
+        // Main component info
+        populateMainCompInfo(item);
+      });
+    }
+
+    if (msg.type == "maincomp-missing-check-reset") {
+      updateCheckCount();
+    }
+
+    if (msg.type == "maincomp-missing-check-start") {
+      updateCheckCount("increase");
+    }
+
+    if (msg.type == "maincomp-missing-check-end") {
+      updateCheckCount("decrease");
+    }
+
+    if (msg.type == "async-maincomp-missing-attr") {
+      populateMainCompInfo(msg.data.items[0]);
+    }
+
+    // Unused: always returns "UNPUBLSIHED"
+    // if (msg.type == "async-maincomp-published-attr") {
+    // }
+
+    if (msg.type == "selection-change") {
+      setSelectionCount(msg.total);
+
+      const scopeToSelectionInput =
+        document.getElementById("scope-to-selection");
+      if (!scopeToSelectionInput.checked) return;
+
+      parent.postMessage(
+        { pluginMessage: { type: "list", query: getQuery({}) } },
+        "*"
+      );
+    }
+
+    if (msg.type == "page-change") {
+      document.getElementById("refresh").click()
+    }
+
+    if (msg.type == "document-change") {
+      document.getElementById("refresh").click()
+    }
+  };
+
+  // Search
+  let searchTerm = ""; // Set globally for reference
+  document.getElementById("search-term").onkeyup = debounce(() => searchHandler());
+
+  // Clear search
+  document.getElementById("clear-search").onclick = (e) => {
+    e.currentTarget.blur();
+    document.getElementById("search-term").value = "";
+    searchHandler();
+  };
+
+  // Refresh
+  document.getElementById("refresh").onclick = (e) => {
+    e.currentTarget.blur();
+    setLoading();
+    parent.postMessage(
+      { pluginMessage: { type: "list", query: getQuery({}) } },
+      "*"
+    );
+  };
+
+  // Select all in list
+  document.getElementById("select-all").onclick = (e) => {
+    e.currentTarget.blur();
+    const list = document.getElementById("instances-list");
+    let ids = [];
+    for (const li of list.children) {
+      if (!li.classList.contains("hidden")) ids.push(li.id);
+    }
+    parent.postMessage(
+      { pluginMessage: { type: "select", query: getQuery({ ids: ids }) } },
+      "*"
+    );
+  };
+
+  // Open filtering dropdown
+  document.getElementById("filter").onclick = (e) => {
+    e.currentTarget.blur();
+    toggleFiltersVisibility();
+  };
+
+  // Scope to selection
+  document.getElementById("scope-to-selection").onclick = (e) => {
+    e.currentTarget.blur();
+    setLoading();
+    parent.postMessage(
+      { pluginMessage: { type: "list", query: getQuery({}) } },
+      "*"
+    );
+  };
+
+  // Hide nested
+  document.getElementById("hide-nested").onclick = (e) => {
+    e.currentTarget.blur();
+    setLoading();
+    parent.postMessage(
+      { pluginMessage: { type: "list", query: getQuery({}) } },
+      "*"
+    );
+  };
+
+  // Show missing
+  document.getElementById("show-missing").onclick = (e) => {
+    e.currentTarget.blur();
+    const sibling = document.getElementById("show-existing");
+    if (!e.currentTarget.checked && !sibling.checked) sibling.checked = true;
+    setLoading();
+    parent.postMessage(
+      { pluginMessage: { type: "list", query: getQuery({}) } },
+      "*"
+    );
+  };
+
+  // Show existing
+  document.getElementById("show-existing").onclick = (e) => {
+    e.currentTarget.blur();
+    const sibling = document.getElementById("show-missing");
+    if (!e.currentTarget.checked && !sibling.checked) sibling.checked = true;
+    setLoading();
+    parent.postMessage(
+      { pluginMessage: { type: "list", query: getQuery({}) } },
+      "*"
+    );
+  };
+
+  // Show local
+  document.getElementById("show-local").onclick = (e) => {
+    e.currentTarget.blur();
+    const sibling = document.getElementById("show-remote");
+    if (!e.currentTarget.checked && !sibling.checked) sibling.checked = true;
+    setLoading();
+    parent.postMessage(
+      { pluginMessage: { type: "list", query: getQuery({}) } },
+      "*"
+    );
+  };
+
+  // Show remote
+  document.getElementById("show-remote").onclick = (e) => {
+    e.currentTarget.blur();
+    const sibling = document.getElementById("show-local");
+    if (!e.currentTarget.checked && !sibling.checked) sibling.checked = true;
+    setLoading();
+    parent.postMessage(
+      { pluginMessage: { type: "list", query: getQuery({}) } },
+      "*"
+    );
+  };
+</script>
+
+<style>
+  /* ----------------------------------------------------------------------------------------------------------
+  Vars --------------------------------------------------------------------------------------------------------
+  ------------------------------------------------------------------------------------------------------------- */
+  :root {
+    --t-size-5: 9px;
+    --t-size-4: 10px;
+    --t-size-3: 11px;
+    --t-size-2: 12px;
+    --t-size-1: 13px;
+    --t-size0: 14px;
+    --t-size1: 16px;
+    --t-size2: 18px;
+    --t-size3: 20px;
+    --t-size4: 24px;
+    --t-size5: 28px;
+
+    --s-4: 2px;
+    --s-3: 4px;
+    --s-2: 8px;
+    --s-1: 12px;
+    --s0: 16px;
+    --s1: 24px;
+    --s2: 32px;
+    --s3: 48px;
+    --s4: 64px;
+    --s5: 96px;
+    --s6: 128px;
+
+    --headerHeight: 71px;
+    --filtersHeight: 252px;
+    --controlHeight: calc(var(--s1) - var(--s-4));
+  }
+
+  .figma-dark {
+    --c-bg0: var(--figma-color-bg);
+    --c-bg0_5: #1e1e1f;
+    --c-bg1: rgba(0, 0, 0, 0.6);
+    --c-bg2: rgba(0, 0, 0, 1);
+    --c-bg3: rgba(255, 255, 255, 0.04);
+    --c-bg4: rgba(125, 0, 125, 0.1);
+    --c-text: var(--figma-color-text);
+    --c-text-1: #c2c4c5;
+    --c-text-2: #a2a4a5;
+    --c-text-2_5: #828586;
+    --c-text-3: #727475;
+    --c-text-4: #525455;
+    --c-text-component: var(--figma-color-text-component);
+    --c-text-component-hover: #b188df;
+    --c-text-component-active: #f1c8ff;
+    --c-control-idle: #bb00bb;
+    --c-control-hover: #ff66ff;
+    --c-control-active: #880088;
+    --c-border: #323435;
+    --shadow-m: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    --font-weight: 400;
+
+    --c-remote-comp-icon: var(--c-text-1);
+    --c-remote-comp-icon-loading: var(--c-text-3);
+    --c-remote-comp-missing-icon: var(--c-text-3);
+    --c-remote-comp-missing-text: var(--c-text-3);
+  }
+
+  .figma-light {
+    --c-bg0: var(--figma-color-bg);
+    --c-bg0_5: #ececee;
+    --c-bg1: rgba(255, 255, 255, 0.8);
+    --c-bg2: rgba(255, 255, 255, 1);
+    --c-bg3: rgba(0, 0, 0, 0.03);
+    --c-bg4: rgba(125, 0, 125, 0.07);
+    --c-text: var(--figma-color-text);
+    --c-text-1: #323435;
+    --c-text-2: #525455;
+    --c-text-2_5: #727475;
+    --c-text-3: #808384;
+    --c-text-4: #a2a4a5;
+    --c-text-component: var(--figma-color-text-component);
+    --c-text-component-hover: #a27bd0;
+    --c-text-component-active: #5f2972;
+    --c-control-idle: #dd00dd;
+    --c-control-hover: #aa00aa;
+    --c-control-active: #ff44ff;
+    --c-border: #d2d4d5;
+    --shadow-m: 0 2px 12px rgba(0, 0, 0, 0.04);
+
+    --font-weight: 420;
+
+    --c-remote-comp-icon: var(--c-text-1);
+    --c-remote-comp-icon-loading: var(--c-text-3);
+    --c-remote-comp-missing-icon: var(--c-text-3);
+    --c-remote-comp-missing-text: var(--c-text-3);
+  }
+
+  /* ----------------------------------------------------------------------------------------------------------
+  Tokens ------------------------------------------------------------------------------------------------------
+  ------------------------------------------------------------------------------------------------------------- */
+  .hidden {
+    display: none;
+  }
+
+  /* ----------------------------------------------------------------------------------------------------------
+  Main --------------------------------------------------------------------------------------------------------
+  ------------------------------------------------------------------------------------------------------------- */
+  body {
+    margin: 0;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    color: var(--c-text);
+    background: var(--c-bg0_5);
+    font-weight: var(--font-weight);
+  }
+
+  .wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: stretch;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    transition: all .3s ease-in-out;
+  }
+
+  .figma-dark .wrapper,
+  .figma-light .wrapper {
+    opacity: 1;
+  }
+
+  h5 {
+    font-size: var(--t-size-2);
+    color: var(--c-text-1);
+    font-weight: 500;
+    margin: calc(var(--s0) + var(--s-3)) 0;
+    padding-left: calc(var(--controlHeight) + var(--s-3));
+    border-top: 1px solid var(--c-border);
+    padding-top: calc(var(--s0) + var(--s-3));
+  }
+
+  p {
+    line-height: 1.5em;
+  }
+
+  /* Head -------------------------------------------------------------------------------------------------------- */
+  .head {
+    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--c-bg1);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    z-index: 20;
+    box-shadow: var(--shadow-m);
+  }
+
+  /* Actions -------------------------------------------------- */
+  .actions {
+    flex: 0 0 auto;
+    padding: calc(var(--s-2) + var(--s-4));
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    font-size: var(--t-size-2);
+    box-sizing: border-box;
+  }
+
+  .actions .left,
+  .actions .right {
+    flex: 0 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+
+  .actions .left > *:not(:first-child) {
+    margin-left: calc(var(--s-2) - var(--s-4));
+  }
+
+  .actions .right > *:not(:first-child) {
+    margin-left: calc(var(--s-2) - var(--s-4));
+  }
+
+  /* Filtering actions -------------------------------------------------- */
+  .filtering-actions {
+    flex: 0 0 auto;
+    padding: calc(var(--s-2) + var(--s-4));
+    display: flex;
+    flex-flow: column nowrap;
+    font-size: var(--t-size-2);
+    box-sizing: border-box;
+    transition: all 0.1s ease-in-out;
+    height: var(--filtersHeight);
+    background: var(--c-bg4);
+    overflow: hidden;
+  }
+
+  .filtering-actions:not(.hidden) {
+    opacity: 1;
+    max-height: var(--filtersHeight);
+    padding-top: calc(var(--s-2) + var(--s-4));
+    padding-bottom: calc(var(--s-2) + var(--s-4));
+  }
+
+  .filtering-actions.hidden {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .section-filters {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s0);
+    padding: 0 var(--s-3);
+  }
+
+  .section-filters .group {
+    position: relative;
+    --descriptionHeight: 16px;
+  }
+
+  .section-filters .group .input-wrapper {
+    max-height: var(--s-1) + var(--descriptionHeight);
+  }
+
+  .section-filters .group .input-wrapper:not(:first-child) {
+    margin-top: var(--s-1);
+  }
+
+  .section-filters .group:before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: calc(var(--s-3) * -1);
+    width: var(--controlHeight);
+    height: calc(100% - var(--descriptionHeight));
+    border: 1px solid var(--c-border);
+    border-radius: 11px;
+  }
+
+  /* Main component checks counter ---------------------------------------- */
+  .main-comp-checks-count {
+    background: var(--c-bg1);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    padding: var(--s-2) var(--s-1);
+    border-radius: 50px;
+    color: var(--c-text-3);
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    position: absolute;
+    z-index: 20;
+    margin-top: calc(var(--headerHeight) + 4px);
+    left: 50%;
+    transform: translateX(-50%) translateY(0px);
+    opacity: 1;
+    transition: all 0.1s ease-in-out;
+    font-size: var(--t-size-3);
+    box-shadow: var(--shadow-m);
+  }
+
+  .main-comp-checks-count.hidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-8px);
+  }
+
+  .filters-visible .main-comp-checks-count {
+    margin-top: calc(var(--headerHeight) + var(--filtersHeight) + 4px);
+  }
+
+  .main-comp-checks-count .icon-loading {
+    width: var(--s0);
+    height: var(--s0);
+    stroke: transparent;
+    margin-right: var(--s-3);
+    transition: fill 0.1s ease-in-out;
+    fill: var(--c-remote-comp-icon-loading);
+    margin-bottom: -2px;
+  }
+
+  /* Counters -------------------------------------------------------------------------------------------------------- */
+  .counters {
+    position: relative;
+    padding: calc(var(--s-2) - var(--s-4)) var(--s0);
+    height: 14px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--c-bg3);
+  }
+
+  .instances-count,
+  .selection-count {
+    font-size: var(--t-size-3);
+    color: var(--c-text-3);
+  }
+
+  /* List -------------------------------------------------------------------------------------------------------- */
+  .instances-list {
+    position: relative;
+    flex: 1 1 auto;
+    height: 100%;
+    list-style-type: none;
+    box-sizing: border-box;
+    margin: 0;
+    overflow-y: auto;
+    padding: calc(var(--s-2) + var(--s-4));
+    padding-top: var(--headerHeight);
+    z-index: 10;
+    transition: all 0.1s ease-in-out;
+  }
+
+  .filters-visible .instances-list {
+    padding-top: calc(var(--headerHeight) + var(--filtersHeight));
+  }
+
+  .instances-list li {
+    font-size: var(--t-size-2);
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    margin: 0;
+    padding: calc(var(--s-2) - var(--s-4));
+  }
+
+  .instances-list li.hidden {
+    display: none;
+  }
+
+  .instances-list li:not(:last-child) {
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .instances-list li span {
+    flex: 0 1 auto;
+    display: inline-flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+
+  /* Instance name ----------------------------------------------------------- */
+  .instances-list li .instance-name {
+    color: var(--c-text-component);
+    transition: color 0.1s ease-in-out;
+    cursor: pointer;
+    display: inline-flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+
+  .instances-list li .instance-name.not-visible {
+    opacity: 0.4;
+  }
+
+  .instances-list li .instance-name:focus,
+  .instances-list li .instance-name:hover {
+    color: var(--c-text-component-hover);
+  }
+
+  .instances-list li .instance-name:active {
+    color: var(--c-text-component-active);
+  }
+
+  /* Instance icon */
+  .instances-list li .instance-name .icon-instance {
+    width: calc(var(--s-2) + var(--s-4));
+    height: calc(var(--s-2) + var(--s-4));
+    stroke: var(--c-text-component);
+    fill: transparent;
+    margin-right: calc(var(--s-2) + var(--s-4));
+    transition: stroke 0.1s ease-in-out;
+  }
+
+  .instances-list li .instance-name:focus .icon-instance,
+  .instances-list li .instance-name:hover .icon-instance {
+    stroke: var(--c-text-component-hover);
+  }
+
+  .instances-list li .instance-name:active .icon-instance {
+    stroke: var(--c-text-component-active);
+  }
+
+  .instances-list .nested {
+    color: var(--c-text-2_5);
+    font-style: italic;
+    margin-left: var(--s-1);
+    font-size: var(--t-size-3);
+  }
+
+  .instances-list .nested .icon-nested {
+    width: calc(var(--s-2) + var(--s-4));
+    height: calc(var(--s-2) + var(--s-4));
+    stroke: var(--c-text-2_5);
+    margin-right: var(--s-3);
+  }
+
+  /* Main component info ----------------------------------------------------------- */
+  .instances-list li .main-comp-info .icon-component,
+  .instances-list li .main-comp-info .icon-component-remote {
+    width: 10px;
+    height: 10px;
+    stroke: transparent;
+    margin-left: calc(var(--s-2) + var(--s-4));
+    transition: fill 0.1s ease-in-out;
+    fill: var(--c-remote-comp-icon);
+  }
+
+  .instances-list li .main-comp-info {
+    font-style: italic;
+    color: var(--c-remote-comp-missing-text);
+  }
+
+  .instances-list li .no-main-comp .icon-component,
+  .instances-list li .no-main-comp .icon-component-remote {
+    fill: var(--c-remote-comp-missing-icon);
+  }
+
+  /* Main comp info loading */
+  .instances-list li .main-comp-info.loading .icon-component-remote {
+    fill: var(--c-remote-comp-icon-loading);
+  }
+
+  .instances-list li .main-comp-info .icon-loading {
+    width: var(--s0);
+    height: var(--s0);
+    stroke: transparent;
+    margin-left: calc(var(--s-1) + var(--s-4));
+    transition: fill 0.1s ease-in-out;
+    fill: var(--c-remote-comp-icon-loading);
+    margin-top: calc(var(--s-2) * -1);
+    margin-bottom: calc(var(--s-2) * -1);
+  }
+
+  /* Main comp link */
+  .instances-list li .main-comp-link {
+    cursor: pointer;
+  }
+
+  .instances-list li .main-comp-link .icon-component,
+  .instances-list li .main-comp-link .icon-component-remote {
+    fill: var(--c-text-component);
+  }
+
+  .instances-list li .main-comp-link:focus .icon-component,
+  .instances-list li .main-comp-link:hover .icon-component,
+  .instances-list li .main-comp-link:focus .icon-component-remote,
+  .instances-list li .main-comp-link:hover .icon-component-remote {
+    stroke: var(--c-text-component-hover);
+  }
+
+  .instances-list li .main-comp-link:active .icon-component,
+  .instances-list li .main-comp-link:active .icon-component-remote {
+    stroke: var(--c-text-component-active);
+  }
+
+  /* Empty list item ----------------------------------------------------------- */
+  .instances-list li.empty-list-item {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .instances-list li.empty-list-item.hidden {
+    display: none;
+  }
+
+  .empty-list-item .icon {
+    width: var(--s4);
+    height: var(--s4);
+  }
+
+  .empty-list-item .icon-stroke {
+    fill: transparent;
+    stroke: var(--c-text-2);
+    stroke-width: 1px;
+  }
+
+  .empty-list-item span {
+    margin-top: var(--s0);
+    color: var(--c-text-2);
+  }
+
+  .empty-list-item .detail {
+    margin-top: var(--s-2);
+    color: var(--c-text-3);
+  }
+
+  /* ----------------------------------------------------------------------------------------------------------
+  Components --------------------------------------------------------------------------------------------------
+  ------------------------------------------------------------------------------------------------------------- */
+
+  /* Button --------------------------------------------------------------------------------------------------- */
+  button {
+    background: var(--c-control-idle);
+    color: #ffffff;
+    transition: background 0.1s ease-in-out;
+    border: none;
+    margin: 0;
+    padding: 0;
+    border-radius: 11px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    cursor: pointer;
+    padding: var(--s-3) var(--s-1);
+    font-size: var(--t-size-2);
+    line-height: calc(var(--controlHeight) - var(--s-3));
+    height: var(--controlHeight);
+    outline: none;
+  }
+
+  button:focus,
+  button:hover {
+    background: var(--c-control-hover);
+  }
+
+  button:active {
+    background: var(--c-control-active);
+  }
+
+  button.icon-only {
+    padding-left: 0;
+    padding-right: 0;
+    width: var(--controlHeight);
+    justify-content: center;
+  }
+
+  button .icon {
+    width: var(--s-1);
+    height: var(--s-1);
+  }
+
+  button .icon.icon-right {
+    margin-left: var(--s-2);
+  }
+
+  button .icon.icon-left {
+    margin-right: var(--s-2);
+  }
+
+  button .icon.icon-fill {
+    fill: #ffffff;
+    stroke: transparent;
+  }
+
+  button .icon.icon-stroke {
+    stroke: #ffffff;
+    fill: transparent;
+  }
+
+  button .icon.icon-fill-stroke {
+    fill: #ffffff;
+    stroke: #ffffff;
+  }
+
+  /* On ---- */
+  button.on {
+    background: var(--c-text);
+    color: var(--c-control-active);
+  }
+
+  button.on .icon.icon-fill {
+    fill: var(--c-control-active);
+    stroke: transparent;
+  }
+
+  button.on .icon.icon-stroke {
+    stroke: var(--c-control-active);
+    fill: transparent;
+  }
+
+  button.on .icon.icon-fill-stroke {
+    fill: var(--c-control-active);
+    stroke: var(--c-control-active);
+  }
+
+  /* Input wrapper -------------------------------------------------------------------------------------------------- */
+  .input-wrapper {
+    position: relative;
+    display: flex;
+  }
+
+  .input-wrapper.block {
+    flex-flow: column nowrap;
+  }
+
+  .input-wrapper.inline {
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+
+  .input-wrapper.inline > *:not(:first-child) {
+    margin-left: var(--s-4);
+  }
+
+  .section-filters .input-wrapper p {
+    font-size: var(--t-size-3);
+    color: var(--c-text-3);
+    margin: 0;
+    margin-left: calc(var(--controlHeight) + var(--s-3));
+  }
+
+  .section-filters .input-wrapper.block p {
+    margin-left: calc(var(--controlHeight) + var(--s-3));
+  }
+
+  /* Input text --------------------------------------------------------------------------------------------------- */
+  input[type="text"] {
+    border: 1px solid transparent;
+    border-radius: 11px;
+    padding: var(--s-3) var(--s-1);
+    padding-right: calc(var(--s1) - var(--s-4));
+    font-size: var(--t-size-2);
+    line-height: calc(var(--controlHeight) - var(--s-3));
+    height: var(--controlHeight);
+    outline: none;
+    width: 160px;
+    transition: border 0.1s ease-in-out;
+    background: var(--c-bg2);
+    color: var(--c-text);
+    border: 1px solid var(--c-border);
+  }
+
+  input[type="text"]:hover {
+    border-color: var(--c-control-idle);
+  }
+
+  input[type="text"]:focus:not(:hover) {
+    border-color: var(--c-control-active);
+  }
+
+  input[type="text"]::placeholder {
+    color: var(--c-text-4);
+    transition: color 0.1s ease-in-out;
+  }
+
+  input[type="text"] + .icon-cancel {
+    position: absolute;
+    width: var(--s-1);
+    height: var(--s-1);
+    stroke: var(--c-text-3);
+    top: 50%;
+    right: calc(var(--s-3) + var(--s-4));
+    transform: translateY(-50%);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+  }
+
+  input[type="text"] + .icon-cancel.visible {
+    opacity: 1;
+  }
+
+  input[type="text"] + .icon-cancel:hover,
+  input[type="text"] + .icon-cancel:focus {
+    stroke: var(--c-text-2);
+  }
+
+  input[type="text"] + .icon-cancel:active {
+    stroke: var(--c-text-3);
+  }
+
+  /* Input checkbox --------------------------------------------------------------------------------------------------- */
+  .checkbox {
+    display: inline-flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    padding: var(--s-3) 0;
+    line-height: calc(var(--controlHeight) - var(--s-3));
+    height: var(--controlHeight);
+    box-sizing: border-box;
+  }
+
+  .checkbox > input {
+    position: relative;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+
+    height: calc(var(--s-1) + var(--s-4));
+    width: calc(var(--s-1) + var(--s-4));
+    border-radius: var(--s-2);
+    margin: 0;
+
+    border: 1px solid var(--c-control-idle);
+    outline: none;
+    transition: all 0.1s ease-in-out;
+  }
+
+  .checkbox > input:checked {
+    border: 1px solid transparent;
+    background-color: var(--c-control-idle);
+  }
+
+  .checkbox > span {
+    color: var(--c-text-2);
+    font-size: var(--t-size-2);
+    margin-left: var(--s-1);
+    transition: all 0.1s ease-in-out;
+  }
+
+  .checkbox:hover > input:checked,
+  .checkbox:focus > input:checked {
+    background-color: var(--c-control-hover);
+  }
+
+  .checkbox:active > input:checked {
+    background-color: var(--c-control-active);
+  }
+
+  .checkbox:hover > input:not(:checked),
+  .checkbox:focus > input:not(:checked) {
+    border-color: var(--c-control-hover);
+  }
+
+  .checkbox:active > input:not(:checked) {
+    border-color: var(--c-control-active);
+  }
+
+  .checkbox:hover > span,
+  .checkbox:focus > span {
+    color: var(--c-text-1);
+  }
+
+  /* Loading item --------------------------------------------------------------------------------------------------- */
+  .instances-list li.loading-item {
+    position: relative;
+    overflow: hidden;
+    --anim-delay: 0s;
+  }
+
+  .instances-list li.loading-item:before {
+    content: "";
+    position: absolute;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0) 0%,
+      var(--c-bg0_5) 40%,
+      var(--c-bg0_5) 60%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    animation-name: shimmer;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-delay: var(--anim-delay);
+    animation-timing-function: ease-in-out;
+    opacity: 0.5;
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .instances-list li.loading-item .instance-name {
+    min-width: 90%;
+  }
+
+  .instances-list li.loading-item .instance-name .icon-instance {
+    stroke: var(--c-text-4);
+  }
+
+  .instances-list li.loading-item .instance-name .name {
+    position: relative;
+    min-width: var(--s2);
+  }
+
+  .instances-list li.loading-item .instance-name .name:before {
+    content: "";
+    background: var(--c-text-4);
+    position: absolute;
+    top: var(--s-3);
+    left: 0;
+    right: 0;
+    bottom: var(--s-3);
+    border-radius: var(--s-1);
+  }
+
+  .instances-list li.loading-item .main-comp-info .icon-component {
+    fill: var(--c-text-4);
+  }
+</style>
