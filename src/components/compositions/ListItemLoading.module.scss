@@ -1,0 +1,225 @@
+.ListItemLoading {
+  font-size: var(--t-size-2);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: calc(var(--s-2) - var(--s-4)) var(--s0);
+  box-sizing: border-box;
+
+  & :global {
+    span {
+      flex: 0 1 auto;
+      display: inline-flex;
+      flex-flow: row nowrap;
+      align-items: center;
+    }
+  }
+
+  .InstanceName {
+    color: var(--c-text-component);
+    transition: color 0.1s ease-in-out;
+    cursor: pointer;
+    display: inline-flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    &.FigmaHiddenNode {
+      opacity: 0.4;
+    }
+
+    &:focus,
+    &:hover {
+      color: var(--c-text-component-hover);
+    }
+
+    &:active {
+      color: var(--c-text-component-active);
+    }
+
+    // Icon instance
+    & :global {
+      .icon-instance {
+        width: calc(var(--s-2) + var(--s-4));
+        height: calc(var(--s-2) + var(--s-4));
+        stroke: var(--c-text-component);
+        fill: transparent;
+        margin-right: calc(var(--s-2) + var(--s-4));
+        transition: stroke 0.1s ease-in-out;
+      }
+    }
+
+    &:focus,
+    &:hover {
+      .icon-instance {
+        stroke: var(--c-text-component-hover);
+      }
+    }
+
+    &:active {
+      .icon-instance {
+        stroke: var(--c-text-component-active);
+      }
+    }
+
+    // Nested info
+    .Nested {
+      color: var(--c-text-2_5);
+      font-style: italic;
+      margin-left: var(--s-1);
+      font-size: var(--t-size-3);
+
+      & :global {
+        .icon-nested {
+          width: calc(var(--s-2) + var(--s-4));
+          height: calc(var(--s-2) + var(--s-4));
+          stroke: var(--c-text-2_5);
+          margin-right: var(--s-3);
+        }
+      }
+    }
+  }
+
+  & :global {
+    .icon-loading {
+      width: var(--s0);
+      height: var(--s0);
+      stroke: transparent;
+      margin-left: calc(var(--s-1) + var(--s-4));
+      transition: fill 0.1s ease-in-out;
+      fill: var(--c-remote-comp-icon-loading);
+      margin-top: calc(var(--s-2) * -1);
+      margin-bottom: calc(var(--s-2) * -1);
+    }
+  }
+
+  .MainCompInfo {
+    font-style: italic;
+    color: var(--c-remote-comp-missing-text);
+
+    & :global {
+      .icon-component,
+      .icon-component-remote {
+        width: 10px;
+        height: 10px;
+        stroke: transparent;
+        margin-left: calc(var(--s-2) + var(--s-4));
+        transition: fill 0.1s ease-in-out;
+        fill: var(--c-remote-comp-icon);
+      }
+    }
+
+    &.NoMainComp {
+      & :global {
+        .icon-component,
+        .icon-component-remote {
+          fill: var(--c-remote-comp-missing-icon);
+        }
+      }
+    }
+
+    &.MainCompLink {
+      cursor: pointer;
+
+      & :global {
+        .icon-component,
+        .icon-component-remote {
+          fill: var(--c-text-component);
+        }
+      }
+
+      &:global {
+        &:focus .icon-component,
+        &:hover .icon-component,
+        &:focus .icon-component-remote,
+        &:hover .icon-component-remote {
+          stroke: var(--c-text-component-hover);
+        }
+        &:active .icon-component,
+        &:active .icon-component-remote {
+          stroke: var(--c-text-component-active);
+        }
+      }
+    }
+
+    &.Loading {
+      .icon-component-remote {
+        fill: var(--c-remote-comp-icon-loading);
+      }
+    }
+  }
+}
+
+.ListItemLoading {
+  position: relative;
+  overflow: hidden;
+  --anim-delay: 0s;
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0) 0%,
+      var(--c-bg0_5) 40%,
+      var(--c-bg0_5) 60%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    animation-name: shimmer;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-delay: var(--anim-delay);
+    animation-timing-function: ease-in-out;
+    opacity: 0.5;
+  }
+
+  .InstanceName {
+    min-width: 90%;
+
+    // Icon instance
+    & :global {
+      .icon-instance {
+        stroke: var(--c-text-4);
+      }
+    }
+
+    .Name {
+      position: relative;
+      min-width: var(--s2);
+
+      &:before {
+        content: "";
+        background: var(--c-text-4);
+        position: absolute;
+        top: var(--s-3);
+        left: 0;
+        right: 0;
+        bottom: var(--s-3);
+        border-radius: var(--s-1);
+      }
+    }
+  }
+
+  .MainCompInfo {
+    & :global {
+      .icon-component {
+        fill: var(--c-text-4);
+      }
+    }
+  }
+}

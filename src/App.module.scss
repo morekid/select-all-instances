@@ -1,0 +1,27 @@
+.App {
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: stretch;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  width: var(--pluginWidth);
+
+  background: var(--c-bg0_5);
+
+  z-index: 20;
+}
+
+.SidebarFilters {
+  width: var(--pluginFiltersSidebar);
+  position: absolute;
+  left: var(--pluginWidth);
+  top: 0;
+  height: 100%;
+  overflow-y: auto;
+
+  z-index: 10;
+}

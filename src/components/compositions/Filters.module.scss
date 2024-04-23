@@ -1,0 +1,96 @@
+.Filters {
+  flex: 0 0 auto;
+  padding: calc(var(--s0) - var(--s-4)) calc(var(--s1) - var(--s-3));
+  display: flex;
+  flex-flow: column nowrap;
+  font-size: var(--t-size-2);
+  box-sizing: border-box;
+  height: var(--filtersHeight);
+  background: var(--c-bg4);
+  overflow: hidden;
+
+  transition: opacity 0.2s ease-in-out;
+
+  &.Visible {
+    opacity: 1;
+  }
+
+  &:not(.Visible) {
+    opacity: 0;
+    padding: 0;
+    width: 0;
+  }
+
+  .Section {
+    padding: calc(var(--s0) + var(--s-3)) 0;
+
+    &:first-child {
+      padding-top: calc(var(--s0) + var(--s-3)) 0;
+    }
+
+    &:not(:first-child) {
+      border-top: 1px solid var(--c-border);
+    }
+
+    & :global {
+      h5 {
+        font-size: var(--t-size-2);
+        color: var(--c-text-1);
+        line-height: 1.5em;
+        font-weight: 500;
+        padding: 0;
+        margin: 0;
+        margin-bottom: calc(var(--s0) + var(--s-3));
+      }
+    }
+
+    .SectionControls {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: calc(var(--s0) + var(--s-3));
+      padding: 0 var(--s-3);
+
+      .ControlGroup {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 10px;
+      }
+
+      .Group {
+        position: relative;
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 6px;
+
+        & :global {
+          .Label {
+            margin-left: calc(var(--s-2) + var(--s-3));
+          }
+        }
+
+        &:before {
+          content: "";
+          box-sizing: border-box;
+          position: absolute;
+          top: 0;
+          left: calc(var(--s-3) * -1);
+          width: var(--controlHeight);
+          height: 100%;
+          border: 1px solid var(--c-border);
+          border-radius: 11px;
+        }
+      }
+    }
+  }
+
+  .CountSelection {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    margin-top: var(--s-2);
+    font-style: italic;
+
+    font-size: var(--t-size-4);
+    color: var(--c-text-1);
+  }
+}

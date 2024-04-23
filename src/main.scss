@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  color: var(--c-text);
+  background: var(--c-bg1);
+  font-weight: var(--font-weight);
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  line-height: 1.5em;
+}
+
+li {
+  line-height: 1.25em;
+}
+
+.link {
+  position: relative;
+  display: inline-block;
+  color: var(--c-text-3);
+  cursor: pointer;
+  padding: 1px var(--s-2);
+
+  transition: all 0.1s ease-in-out;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 1px solid var(--c-text-3);
+    border-radius: var(--s-2);
+    opacity: 0.5;
+
+    transition: all 0.1s ease-in-out;
+  }
+
+  &:hover,
+  &:focus {
+    color: var(--c-text-2);
+
+    &:before {
+      border: 1px solid var(--c-text-2);
+    }
+  }
+
+  &:active {
+    color: var(--c-text-4);
+
+    &:before {
+      border: 1px solid var(--c-text-4);
+    }
+  }
+}

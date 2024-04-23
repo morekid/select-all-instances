@@ -1,0 +1,65 @@
+.InputText {
+  border: 1px solid transparent;
+  border-radius: 11px;
+  padding: var(--s-3) var(--s-1);
+  padding-right: calc(var(--s1) - var(--s-4));
+  font-size: var(--t-size-2);
+  line-height: calc(var(--controlHeight) - var(--s-3));
+  height: var(--controlHeight);
+  outline: none;
+  min-width: 160px;
+  transition: all 0.1s ease-in-out;
+  background: var(--c-bg2);
+  color: var(--c-text);
+  border: 1px solid var(--c-border);
+
+  &:hover {
+    border-color: var(--c-button-primary-idle);
+  }
+
+  &:focus:not(:hover) {
+    border-color: var(--c-button-primary-active);
+  }
+
+  &::placeholder {
+    color: var(--c-text-4);
+    transition: color 0.1s ease-in-out;
+  }
+}
+
+.ActionCancel {
+  position: absolute;
+  top: 50%;
+  width: var(--s-1);
+  height: var(--s-1);
+  right: calc(var(--s-3) + var(--s-4));
+  transform: translateY(-50%);
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.1s ease-in-out;
+
+  &:hover,
+  &:focus {
+    & :global {
+      .icon {
+        stroke: var(--c-text-2);
+      }
+    }
+  }
+
+  &:active {
+    & :global {
+      .icon {
+        stroke: var(--c-text-3);
+      }
+    }
+  }
+
+  & :global {
+    .icon {
+      width: var(--s-1);
+      height: var(--s-1);
+      stroke: var(--c-text-3);
+    }
+  }
+}

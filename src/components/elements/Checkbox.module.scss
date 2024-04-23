@@ -1,0 +1,112 @@
+#ID {
+  // This is to couple the checkbox input with its label.
+  position: initial;
+}
+
+.Checkbox {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  padding: var(--s-3) 0;
+  line-height: calc(var(--controlHeight) - var(--s-3));
+  height: var(--controlHeight);
+  box-sizing: border-box;
+
+  .Input {
+    position: relative;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+
+    height: calc(var(--s-1) + var(--s-4));
+    width: calc(var(--s-1) + var(--s-4));
+    border-radius: var(--s-2);
+    margin: 0;
+
+    outline: none;
+    transition: all 0.1s ease-in-out;
+
+    background: transparent;
+    border: 1px solid transparent;
+  }
+
+  .Label {
+    font-size: var(--t-size-2);
+    margin-left: var(--s-2);
+    transition: all 0.1s ease-in-out;
+  }
+
+  &:not(.Checked) {
+    .Input {
+      border: 1px solid var(--c-control-off-idle);
+    }
+
+    .Label {
+      color: var(--c-control-text-off-idle);
+    }
+
+    &:hover,
+    &:focus {
+      .Input {
+        border: 1px solid var(--c-control-off-hover);
+      }
+
+      .Label {
+        color: var(--c-control-text-off-hover);
+      }
+    }
+
+    &:active {
+      .Input {
+        border: 1px solid var(--c-control-off-active);
+      }
+
+      .Label {
+        color: var(--c-control-text-off-active);
+      }
+    }
+  }
+
+  &.Checked {
+    .Input {
+      background-color: var(--c-control-on-idle);
+    }
+
+    .Label {
+      color: var(--c-control-text-on-idle);
+    }
+
+    &:hover,
+    &:focus {
+      .Input {
+        background-color: var(--c-control-on-hover);
+      }
+
+      .Label {
+        color: var(--c-control-text-on-hover);
+      }
+    }
+
+    &:active {
+      .Input {
+        background-color: var(--c-control-on-active);
+      }
+
+      .Label {
+        color: var(--c-control-text-on-active);
+      }
+    }
+  }
+
+  &.Disabled {
+    pointer-events: none;
+
+    &:not(.Checked),
+    &.Checked {
+      opacity: 0.4;
+    }
+  }
+}

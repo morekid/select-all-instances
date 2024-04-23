@@ -1,0 +1,153 @@
+.Button {
+  position: relative;
+  transition: all 0.1s ease-in-out;
+  border: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  cursor: pointer;
+  padding-left: var(--s-1);
+  padding-right: var(--s-1);
+  font-size: var(--t-size-2);
+  line-height: calc(var(--controlHeight) - var(--s-3));
+  height: var(--controlHeight);
+  outline: none;
+
+  &:disabled {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  &.IconOnly {
+    padding-left: 0;
+    padding-right: 0;
+    width: var(--controlHeight);
+    justify-content: center;
+  }
+
+  & :global {
+    .icon.icon-fill {
+      stroke: transparent;
+    }
+
+    .icon.icon-stroke {
+      fill: transparent;
+    }
+  }
+
+  &.StartDecorator {
+    & :global {
+      .icon {
+        margin-right: var(--s-2);
+      }
+    }
+  }
+
+  &.EndDecorator {
+    & :global {
+      .icon {
+        margin-left: var(--s-2);
+      }
+    }
+  }
+
+  &.RolePrimary {
+    background: var(--c-button-primary-idle);
+    color: #ffffff;
+    border-radius: 11px;
+    padding-top: var(--s-3);
+    padding-bottom: var(--s-3);
+
+    & :global {
+      .icon {
+        width: var(--s-1);
+        height: var(--s-1);
+        transition: all 0.1s ease-in-out;
+
+        color: #ffffff;
+      }
+    }
+
+    &:focus,
+    &:hover {
+      background: var(--c-button-primary-hover);
+    }
+
+    &:active {
+      background: var(--c-button-primary-active);
+    }
+
+    /* On ---- */
+    &.On {
+      background: var(--c-text);
+      color: var(--c-button-primary-active);
+
+      & :global {
+        .icon {
+          color: var(--c-button-primary-active);
+        }
+      }
+    }
+  }
+
+  &.RoleSecondary {
+    background: transparent;
+    color: var(--c-button-secondary-text-idle);
+    padding-top: calc(var(--s-3) - 1px);
+    padding-bottom: calc(var(--s-3) - 1px);
+
+    & :global {
+      .icon {
+        width: calc(var(--s0) - var(--s-4));
+        height: calc(var(--s0) - var(--s-4));
+        transition: all 0.1s ease-in-out;
+
+        color: var(--c-button-secondary-text-idle);
+      }
+    }
+
+    &:focus,
+    &:hover {
+      color: var(--c-button-secondary-text-hover);
+
+      & :global {
+        .icon {
+          color: var(--c-button-secondary-text-hover);
+        }
+      }
+    }
+
+    &:active {
+      color: var(--c-button-secondary-text-active);
+
+      & :global {
+        .icon {
+          color: var(--c-button-secondary-text-active);
+        }
+      }
+    }
+
+    &:global {
+      /* On ---- */
+      &.on {
+        background: var(--c-text);
+        color: var(--c-button-primary-active);
+
+        .icon.icon-fill {
+          fill: var(--c-button-primary-active);
+        }
+
+        .icon.icon-stroke {
+          stroke: var(--c-button-primary-active);
+        }
+
+        .icon.icon-fill-stroke {
+          fill: var(--c-button-primary-active);
+          stroke: var(--c-button-primary-active);
+        }
+      }
+    }
+  }
+}

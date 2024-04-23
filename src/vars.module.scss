@@ -1,0 +1,141 @@
+:root {
+  --t-size-5: 9px;
+  --t-size-4: 10px;
+  --t-size-3: 11px;
+  --t-size-2: 12px;
+  --t-size-1: 13px;
+  --t-size0: 14px;
+  --t-size1: 16px;
+  --t-size2: 18px;
+  --t-size3: 20px;
+  --t-size4: 24px;
+  --t-size5: 28px;
+
+  --s-4: 2px;
+  --s-3: 4px;
+  --s-2: 8px;
+  --s-1: 12px;
+  --s0: 16px;
+  --s1: 24px;
+  --s2: 32px;
+  --s3: 48px;
+  --s4: 64px;
+  --s5: 96px;
+  --s6: 128px;
+
+  --headerHeight: 68px;
+  --filtersHeight: 386px;
+  --controlHeight: calc(var(--s1) - var(--s-4));
+
+  --pluginWidth: 20px; // Reset dynamically by plugin on run
+  --pluginHeight: 20px; // Reset dynamically by plugin on run
+  --pluginFiltersSidebar: 20px; // Reset dynamically by plugin on run
+
+  &:global {
+    &.figma-dark {
+      --c-bg0: var(--figma-color-bg);
+      --c-bg0_5: #1e1e1f;
+      --c-bg1: rgba(0, 0, 0, 0.6);
+      --c-bg2: rgba(0, 0, 0, 1);
+      --c-bg3: rgba(255, 255, 255, 0.04);
+      --c-bg4: rgba(125, 0, 125, 0.1);
+      --c-text: var(--figma-color-text);
+      --c-text-1: #c2c4c5;
+      --c-text-2: #a2a4a5;
+      --c-text-2_5: #828586;
+      --c-text-3: #727475;
+      --c-text-3_5: #626465;
+      --c-text-4: #525455;
+      --c-text-component: var(--figma-color-text-component);
+      --c-text-component-hover: #b188df;
+      --c-text-component-active: #f1c8ff;
+
+      --c-button-primary-idle: #bb00bb;
+      --c-button-primary-hover: #ff66ff;
+      --c-button-primary-active: #880088;
+
+      --c-button-secondary-text-idle: #ff66ff;
+      --c-button-secondary-text-hover: #ffaaff;
+      --c-button-secondary-text-active: #bb00bb;
+
+      --c-control-off-idle: #727475;
+      --c-control-off-hover: #c2c4c5;
+      --c-control-off-active: #525455;
+      --c-control-text-off-idle: #a2a4a5;
+      --c-control-text-off-hover: #c2c4c5;
+      --c-control-text-off-active: #727475;
+
+      --c-control-on-idle: #bb00bb;
+      --c-control-on-hover: #ff66ff;
+      --c-control-on-active: #880088;
+      --c-control-text-on-idle: #ff66ff;
+      --c-control-text-on-hover: #ffaaff;
+      --c-control-text-on-active: #bb00bb;
+
+      --c-border: #27292a;
+      --c-selected: var(--figma-color-bg-selected);
+      --shadow-m: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+      --font-weight: 400;
+
+      --c-remote-comp-icon: var(--c-text-1);
+      --c-remote-comp-icon-loading: var(--c-text-3);
+      --c-remote-comp-missing-icon: var(--c-text-3);
+      --c-remote-comp-missing-text: var(--c-text-3);
+
+      --c-update-available: var(--figma-color-icon-brand-pressed);
+
+      --c-warning-icon: var(--figma-color-icon-warning);
+      --c-warning-text: var(--figma-color-icon-warning);
+    }
+
+    &.figma-light {
+      --c-bg0: var(--figma-color-bg);
+      --c-bg0_5: #ececee;
+      --c-bg1: rgba(255, 255, 255, 0.8);
+      --c-bg2: rgba(255, 255, 255, 1);
+      --c-bg3: rgba(0, 0, 0, 0.03);
+      --c-bg4: rgba(125, 0, 125, 0.07);
+      --c-text: var(--figma-color-text);
+      --c-text-1: #323435;
+      --c-text-2: #525455;
+      --c-text-2_5: #727475;
+      --c-text-3: #808384;
+      --c-text-3_5: #909394;
+      --c-text-4: #a2a4a5;
+      --c-text-component: var(--figma-color-text-component);
+      --c-text-component-hover: #a27bd0;
+      --c-text-component-active: #5f2972;
+
+      --c-button-primary-idle: #bb00bb;
+      --c-button-primary-hover: #aa00aa;
+      --c-button-primary-active: #ff44ff;
+
+      --c-control-idle: #dd00dd;
+      --c-control-hover: #aa00aa;
+      --c-control-active: #ff44ff;
+
+      --c-border: #d2d4d5;
+      --c-selected: var(--figma-color-bg-selected);
+      --shadow-m: 0 2px 12px rgba(0, 0, 0, 0.04);
+
+      --font-weight: 420;
+
+      --c-remote-comp-icon: var(--c-text-1);
+      --c-remote-comp-icon-loading: var(--c-text-3);
+      --c-remote-comp-missing-icon: var(--c-text-3);
+      --c-remote-comp-missing-text: var(--c-text-3);
+
+      --c-update-available: var(--figma-color-icon-brand-pressed);
+
+      --c-warning-icon: var(--figma-color-icon-warning);
+      --c-warning-text: var(--figma-color-icon-warning);
+    }
+
+    /** Theme overrides ---------------------------------------------------------------- */
+    &.figma-dark .App,
+    &.figma-light .App {
+      opacity: 1;
+    }
+  }
+}

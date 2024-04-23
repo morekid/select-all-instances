@@ -1,0 +1,13 @@
+.List {
+  position: relative;
+  flex: 1 1 auto;
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  overflow-y: auto;
+  z-index: 10;
+  margin-top: var(--headerHeight);
+
+  .VirtualizedList {
+  }
+}

@@ -3,9 +3,16 @@
 *.log.*
 node_modules
 
+# figma
 out/
 dist/
 code.js
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
 
 # MacOS
 .DS_Store

@@ -1,0 +1,29 @@
+.InputWrapper {
+  position: relative;
+  display: flex;
+
+  &.Block {
+    flex-flow: column nowrap;
+    gap: var(--s-4);
+  }
+
+  &.Inline {
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: var(--s-3);
+
+    & > * {
+      display: inline-block;
+    }
+  }
+
+  &.Inline > *:not(:first-child) {
+    margin-left: var(--s-4);
+  }
+}
+
+.Detail {
+  font-size: var(--t-size-3);
+  color: var(--c-text-3);
+  margin: 0;
+}

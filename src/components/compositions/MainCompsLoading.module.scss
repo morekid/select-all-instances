@@ -1,0 +1,26 @@
+.MainCompsLoading {
+  color: var(--c-text-4);
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-left: var(--s-2);
+
+  opacity: 1;
+  transition: all 0.1s ease-in-out;
+  font-size: var(--t-size-3);
+
+  &.Hidden {
+    opacity: 0;
+    transition-delay: 2s;
+  }
+
+  & :global {
+    .icon-loading {
+      width: calc(var(--s0) + var(--s-4));
+      height: calc(var(--s0) + var(--s-4));
+      stroke: transparent;
+      margin-left: var(--s-3);
+      transition: fill 0.1s ease-in-out;
+    }
+  }
+}

@@ -18,17 +18,38 @@ Try it out:
 - Search in current selection to find children instances for any node type:
   sections, frames, etc.
 - Filter out nested instances: allows working only with instances inside main
-  components, so that nested ones can inherit the changes without overrides.
+  components, so that nested ones can inherit the changes without overrides.* 
+- Filter visible/hidden instances.
+- Filter up-to-date/outdated instances.
 - Filter local/remote components.
 - Filter missing/existing components.
 
-### Future: [See what's next →](https://github.com/users/morekid/projects/1)
-
 ## Dev
 
+Run:
+
 ```
-> npm install
-> npm run watch
+npm install
+```
+
+Build:
+
+```
+npm run build
+```
+
+Watch:
+
+```
+npm run watch
+```
+
+----
+
+Linting:
+
+```
+trunck check
 ```
 
 --

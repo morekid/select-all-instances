@@ -1,0 +1,115 @@
+.Heading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--pluginWidth);
+  background: var(--c-bg1);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  z-index: 20;
+  box-shadow: var(--shadow-m);
+
+  & :global {
+    .InputText {
+      min-width: 80px;
+      width: 100%;
+    }
+  }
+}
+
+.Actions {
+  flex: 0 0 auto;
+  padding: calc(var(--s-2) + var(--s-4));
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  font-size: var(--t-size-2);
+  box-sizing: border-box;
+  gap: var(--s0);
+
+  .Left,
+  .Right {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+
+  .Left {
+    flex: 1 1 auto;
+  }
+
+  .Right {
+    flex: 0 0 auto;
+  }
+
+  .Left > *:not(:first-child) {
+    margin-left: calc(var(--s-2) - var(--s-4));
+  }
+
+  .Right > *:not(:first-child) {
+    margin-left: calc(var(--s-2) - var(--s-4));
+  }
+}
+
+.Counters {
+  position: relative;
+  padding: calc(var(--s-3) + var(--s-4)) var(--s0);
+  height: 14px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  // background: var(--c-bg3);
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 1px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--c-border);
+    // width: calc(100% - ((var(--s-2) + var(--s-4)) * 2));
+    width: 100%;
+    opacity: 0.5;
+  }
+
+  .CountInstances {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    font-size: var(--t-size-3);
+    color: var(--c-text-3);
+  }
+
+  .CountInstances {
+    & :global {
+      .link {
+        margin-left: calc(var(--s-2));
+      }
+    }
+
+    & :global {
+      .icon-loading {
+        width: calc(var(--s0) + var(--s-4));
+        height: calc(var(--s0) + var(--s-4));
+        stroke: transparent;
+        margin-right: var(--s-3);
+        transition: fill 0.1s ease-in-out;
+      }
+    }
+  }
+}
+
+.UpdatesDot {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: var(--s-2);
+  height: var(--s-2);
+  border-radius: var(--s-3);
+  background-color: var(--c-warning-icon);
+  border: 1px solid var(--c-bg0);
+  box-sizing: border-box;
+}

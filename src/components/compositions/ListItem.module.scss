@@ -1,0 +1,294 @@
+.ListItem {
+  font-size: var(--t-size-2);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  box-sizing: border-box;
+  height: 28px;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    z-index: 0;
+
+    transition: opacity 0.1s ease-in-out;
+  }
+
+  &:hover {
+    &:before {
+      content: "";
+      background-color: var(--c-selected);
+      opacity: 0.15;
+    }
+  }
+
+  &.FigmaSelected {
+    &:before {
+      background-color: var(--c-selected);
+      opacity: 0.25;
+    }
+  }
+
+  & > * {
+    z-index: 10;
+  }
+
+  .InstanceName {
+    color: var(--c-text-component);
+    transition: color 0.1s ease-in-out;
+    cursor: pointer;
+    display: inline-flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    min-height: 100%;
+    box-sizing: border-box;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    padding: calc(var(--s-2) - var(--s-4)) var(--s0);
+    flex: 1 1 auto;
+
+    &.FigmaHiddenNode {
+      opacity: 0.4;
+    }
+
+    &:focus,
+    &:hover {
+      color: var(--c-text-component-hover);
+    }
+
+    &:active {
+      color: var(--c-text-component-active);
+    }
+
+    // Icon instance
+    & :global {
+      .icon-instance {
+        flex: 0 0 auto;
+
+        width: calc(var(--s-2) + var(--s-4));
+        height: calc(var(--s-2) + var(--s-4));
+        color: var(--c-text-component);
+        margin-right: calc(var(--s-2) + var(--s-4));
+        transition: color 0.1s ease-in-out;
+      }
+    }
+
+    &:focus,
+    &:hover {
+      & :global {
+        .icon-instance {
+          color: var(--c-text-component-hover);
+        }
+      }
+    }
+
+    &:active {
+      & :global {
+        .icon-instance {
+          color: var(--c-text-component-active);
+        }
+      }
+    }
+
+    .Name {
+      display: inline-block;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    // Nested info
+    .Nested {
+      display: inline-block;
+      flex-flow: row nowrap;
+      align-items: center;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      color: var(--c-text-3_5);
+      font-style: italic;
+      margin-left: var(--s-1);
+      font-size: var(--t-size-3);
+
+      & :global {
+        .icon-nested {
+          width: calc(var(--s-2) + var(--s-4));
+          height: calc(var(--s-2) + var(--s-4));
+          color: var(--c-text-3_5);
+          margin-right: var(--s-3);
+          vertical-align: -0.1em;
+        }
+      }
+    }
+  }
+
+  .Loading {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    min-height: 100%;
+    box-sizing: border-box;
+
+    color: var(--c-remote-comp-icon-loading);
+    font-size: var(--t-size-3);
+
+    padding: calc(var(--s-2) - var(--s-4)) var(--s-3);
+    padding-right: var(--s0);
+
+    & :global {
+      .icon-loading {
+        width: calc(var(--s0) + var(--s-4));
+        height: calc(var(--s0) + var(--s-4));
+        transition: color 0.1s ease-in-out;
+        color: var(--c-remote-comp-icon-loading);
+      }
+    }
+  }
+
+  .MainCompInfo {
+    flex: 0 1 auto;
+    display: inline-flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    font-style: italic;
+    min-height: 100%;
+    box-sizing: border-box;
+
+    flex: 0 0 auto;
+
+    padding-right: var(--s0);
+    gap: var(--s-2);
+
+    & :global {
+      .icon {
+        width: 10px;
+        height: 10px;
+        transition: color 0.1s ease-in-out;
+      }
+    }
+
+    .Link {
+      cursor: pointer;
+
+      & :global {
+        .icon {
+          color: var(--c-text-component);
+        }
+      }
+
+      &:focus,
+      &:hover {
+        & :global {
+          .icon {
+            color: var(--c-text-component-hover);
+          }
+        }
+      }
+
+      &:active {
+        & :global {
+          .icon {
+            color: var(--c-text-component-active);
+          }
+        }
+      }
+    }
+
+    &.Missing {
+      .Link {
+        cursor: default;
+      }
+    }
+
+    // Variant info
+    .Variant {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      min-height: 100%;
+      box-sizing: border-box;
+
+      color: var(--c-remote-comp-icon);
+      font-style: italic;
+      font-size: var(--t-size-3);
+
+      padding: calc(var(--s-2) - var(--s-4)) 0;
+
+      opacity: 0.38;
+
+      & :global {
+        .icon {
+          color: var(--c-remote-comp-icon);
+        }
+
+        .icon-variant {
+          width: calc(var(--s-2) + var(--s-3));
+          height: calc(var(--s-2) + var(--s-3));
+        }
+      }
+    }
+
+    .Component {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      min-height: 100%;
+      box-sizing: border-box;
+
+      color: var(--c-remote-comp-icon);
+      font-size: var(--t-size-3);
+
+      padding: calc(var(--s-2) - var(--s-4)) 0;
+
+      & :global {
+        .icon {
+          color: var(--c-remote-comp-icon);
+        }
+      }
+    }
+
+    .UpdateAvailable {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      min-height: 100%;
+      box-sizing: border-box;
+
+      color: var(--c-update-available);
+      font-size: var(--t-size-3);
+
+      padding: calc(var(--s-2) - var(--s-4)) 0;
+
+      & :global {
+        .icon {
+          color: var(--c-update-available);
+        }
+      }
+    }
+
+    &.Missing {
+      .Variant,
+      .Component {
+        & :global {
+          .icon {
+            color: var(--c-warning-icon);
+          }
+        }
+      }
+    }
+  }
+}
