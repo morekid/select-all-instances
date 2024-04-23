@@ -8,7 +8,7 @@ Try it out:
 [Figma Plugin - Select all instances](https://www.figma.com/community/plugin/893141488737748075)
 
 
-![Select all instances - Screen 1](images/select-all-instances-screenshot.png)
+![Select all instances - Screen 1](images/select-all-instances-screen.png)
 
 ### Features
 
